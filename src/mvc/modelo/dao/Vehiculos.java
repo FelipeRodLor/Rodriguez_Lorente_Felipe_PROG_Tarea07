@@ -5,6 +5,13 @@
  */
 package mvc.modelo.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 
 import mvc.modelo.dominio.vehiculo.Vehiculo;
@@ -18,6 +25,7 @@ public class Vehiculos {
 
     private final int MAX_VEHICULOS = 10;
     private Vehiculo[] vehiculos;
+    private final String FICHERO_VEHICULOS = "datos/Vehiculos.dat";
 
     public Vehiculos() {
         vehiculos = new Vehiculo[MAX_VEHICULOS];
@@ -27,6 +35,38 @@ public class Vehiculos {
 
         return vehiculos.clone();
     }
+
+    public void leerVehiculos() {
+        File fichero = new File(FICHERO_VEHICULOS);
+        ObjectInputStream entrada;
+        try {
+            entrada = new ObjectInputStream(new FileInputStream(fichero));
+            try {
+                vehiculos = (Vehiculo[]) entrada.readObject();
+                entrada.close();
+                System.out.println("Fichero clientes leído satisfactoriamente.");
+            } catch (ClassNotFoundException e) {
+                System.out.println("No puedo encontrar la clase que tengo que leer.");
+            } catch (IOException e) {
+                System.out.println("Error inesperado de Entrada/Salida.");
+            }
+        } catch (IOException e) {
+            System.out.println("No puedo abrir el fihero de clientes.");
+        }
+    }
+    public void escribirVehiculos() {
+		File fichero = new File(FICHERO_VEHICULOS);
+		try {
+			ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero));
+			salida.writeObject((Vehiculo[]) vehiculos);
+			salida.close();
+			System.out.println("Fichero clientes escrito satisfactoriamente.");
+		} catch (FileNotFoundException e) {
+			System.out.println("No puedo crear el fichero de clientes");
+		} catch (IOException e) {
+			System.out.println("Error inesperado de Entrada/Salida");
+		}
+	}
 
     public void añadir(Vehiculo vehiculo) {
         int indice = buscarPrimerIndiceLibreComprobandoExistencia(vehiculo);

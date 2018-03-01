@@ -6,6 +6,7 @@
 
 package mvc.modelo.dominio;
 
+import java.io.Serializable;
 import mvc.modelo.dominio.vehiculo.Vehiculo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.Date;
  *
  */
 
-public class Alquiler {
+public class Alquiler implements Serializable{
     private Date fecha;
     private int dias;
     private final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd/MM/yyyy HH;mm");

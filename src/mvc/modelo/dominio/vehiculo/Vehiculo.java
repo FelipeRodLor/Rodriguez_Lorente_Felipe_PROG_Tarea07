@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package mvc.modelo.dominio.vehiculo;
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
@@ -12,7 +13,7 @@ import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
  * @author Felipillo
  *
  */
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Serializable {
     private String matricula;
     private String marca;
     private String modelo;

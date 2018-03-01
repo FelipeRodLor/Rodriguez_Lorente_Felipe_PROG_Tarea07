@@ -5,6 +5,7 @@
  */
 package mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,19 +13,20 @@ import java.util.regex.Pattern;
  *
  * @author Felipillo
  */
-public class Cliente {
+public class Cliente implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String nombre;
     private String dni;
     private int identificador;
     public DireccionPostal direccionPostal;
-    private static int ultimoIdenificador;
+    private static int ultimoIdentificador;
 
     public Cliente(String nombre, String dni, DireccionPostal direccionPostal) {
 
         setNombre(nombre);
         setDni(dni);
-        setIdentificador();
+        asignarNuevoIdentificador();
         this.direccionPostal = direccionPostal;
 
     }
@@ -36,7 +38,21 @@ public class Cliente {
         direccionPostal = cliente.getDireccionPostal();
 
     }
+    
+   private void asignarNuevoIdentificador() {
 
+        ultimoIdentificador++;
+        identificador = ultimoIdentificador;
+
+    }
+   
+   public static void aumentarUltimoIdentificador(int cantidad) {
+		if (cantidad >= 0)
+			ultimoIdentificador += cantidad;
+		else
+			throw new ExcepcionAlquilerVehiculos("Sólo puedo aumentar el último identificador");
+	}
+   
     private void setNombre(String nombre) {
         if (nombre != null && !nombre.equals("")) {
             this.nombre = nombre;
@@ -53,12 +69,7 @@ public class Cliente {
         }
     }
 
-    private void setIdentificador() {
-
-        ultimoIdenificador++;
-        identificador = ultimoIdenificador;
-
-    }
+ 
 
     private boolean compruebaDni(String dni) {
         Pattern patron = Pattern.compile("([0-9]){8}([a-zA-Z]){1}");

@@ -5,13 +5,14 @@
  */
 package mvc.modelo.dominio.vehiculo;
 
+import java.io.Serializable;
 import mvc.modelo.dominio.ExcepcionAlquilerVehiculos;
 
 /**
  *
  * @author Felipon
  */
-public class DatosTecnicosVehiculo {
+public class DatosTecnicosVehiculo implements Serializable {
 
     private int cilindrada;
     private int numeroPlazas;

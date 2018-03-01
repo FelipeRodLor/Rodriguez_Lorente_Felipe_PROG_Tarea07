@@ -25,6 +25,10 @@ public interface IModeloAlquilerVehiculos {
 
     void borrarCliente(String dni);
 
+    void leerClientes();
+    
+    void escribirClientes();
+    
     void borrarVehiculo(String matricula);
 
     Cliente buscarCliente(String dni);
@@ -39,4 +43,12 @@ public interface IModeloAlquilerVehiculos {
 
     Vehiculo[] obtenerVehiculos();
     
+    void leerVehiculos();
+    
+    void leerAlquileres();
+    
+    void escribirVehiculos();
+    
+    void escribirAlquileres();
+        
 }

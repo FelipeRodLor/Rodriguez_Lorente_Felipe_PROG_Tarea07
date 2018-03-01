@@ -62,6 +62,16 @@ public class ModeloAlquilerVehiculos implements IModeloAlquilerVehiculos {
     }
 
     @Override
+    public void leerClientes() {
+        clientes.leerClientes();
+    }
+
+    @Override
+    public void escribirClientes() {
+        clientes.escribirClientes();
+    }
+
+    @Override
     public void añadirVehiculo(Vehiculo vehiculo) {
         vehiculos.añadir(vehiculo);
     }
@@ -77,6 +87,15 @@ public class ModeloAlquilerVehiculos implements IModeloAlquilerVehiculos {
     }
 
     @Override
+    public void leerVehiculos() {
+        vehiculos.leerVehiculos();
+    }
+ @Override
+    public void escribirVehiculos() {
+        vehiculos.escribirVehiculos();
+    }
+
+    @Override
     public void abrirAlquiler(Cliente cliente, Vehiculo vehiculo) {
         alquileres.abrir(cliente, vehiculo);
     }
@@ -84,6 +103,16 @@ public class ModeloAlquilerVehiculos implements IModeloAlquilerVehiculos {
     @Override
     public void cerrarAlquiler(Cliente cliente, Vehiculo vehiculo) {
         alquileres.cerrar(cliente, vehiculo);
+    }
+
+    @Override
+    public void leerAlquileres() {
+        alquileres.leerAlquileres();
+    }
+    
+     @Override
+    public void escribirAlquileres() {
+        alquileres.escribirAlquileres();
     }
 
     @Override
@@ -107,6 +136,6 @@ public class ModeloAlquilerVehiculos implements IModeloAlquilerVehiculos {
         Vehiculo vehiculo3 = tipoVehiculo3.getInstancia("2222AAA", "Volvo", "V8", datosTecnicosVehiculo2);
         añadirVehiculo(vehiculo3);
         abrirAlquiler(cliente1, buscarVehiculo("2222AAA"));
-        
+
     }
 }

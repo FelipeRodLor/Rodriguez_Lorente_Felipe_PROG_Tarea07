@@ -50,7 +50,7 @@ public class IUTextual implements IVistaAlquilerVehiculos {
     @Override
     public void salir() {
         System.out.println("HAS ABANDONADO SATISFACTORIAMENTE");
-
+        controlador.salir();
     }
 
     @Override
